@@ -75,7 +75,7 @@ export default function Login(props) {
     <div className="Auth-form-container" onSubmit={handleSubmit}>
       <form className="Auth-form">
         <div className="Auth-form-content">
-          {/* <h3 className="Auth-form-title">Connect</h3> */}
+          <h3 className="Auth-form-title">Skills</h3>
           <div className="form-group mt-3">
             <label>Code utilisateur</label>
             <input
