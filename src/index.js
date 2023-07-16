@@ -8,6 +8,7 @@ import AnnualInterviews from "./annualinterview/AnnualInterviews";
 import Interviews from "./interviews/interviews";
 import Trainings from "./trainings/Trainings";
 import Skills from "./skills/Skills";
+import Employees from "./employees/employees";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -20,6 +21,7 @@ root.render(
         <Route path="annualinterviews" element={<AnnualInterviews />} />
         <Route path="trainings" element={<Trainings />} />
         <Route path="skills" element={<Skills />} />
+        <Route path="employees" element={<Employees />} />
         <Route path="about" element={<About />} />
 
         <Route path="dashboard" element={<Dashboard />} />

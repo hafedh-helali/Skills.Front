@@ -27,7 +27,7 @@ export default function NavBar() {
           <NavLink to="/trainings" className="btn btn-primary font-weight-bold">
             Formations
           </NavLink>
-          <NavLink to="/trainings" className="btn btn-primary font-weight-bold">
+          <NavLink to="/employees" className="btn btn-primary font-weight-bold">
             Administration
           </NavLink>
           {/*<NavLink to="/skills" className="btn btn-primary font-weight-bold">

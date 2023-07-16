@@ -81,7 +81,7 @@ export default function Login(props) {
             <input
               type="text"
               className="form-control mt-1"
-              placeholder="Saisir le code"
+              placeholder="Saisir l'email"
               name="usercode"
               value={usercode}
               onChange={(e) => setusercode(e.target.value)}
