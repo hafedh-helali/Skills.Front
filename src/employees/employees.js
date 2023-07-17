@@ -1,34 +1,77 @@
-import React from "react";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
+import NavBar from "../navigation/NavBar";
+import { FaEdit, FaCheck } from "react-icons/fa";
+import Axios from "axios";
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 
 const queryClient = new QueryClient();
 
 export default function Employees() {
-  async function fetchEmployees() {
-    const { data } = await axios.get(
-      "https://jsonplaceholder.typicode.com/users"
-    );
-    return data;
-  }
+  const [employees, setEmployees] = useState([]);
 
-  const { data, error, isError, isLoading } = useQuery(
-    "getEmployees",
-    fetchEmployees
-  );
+  const fetchEmployees = async () => {
+    debugger;
+    const { data } = await Axios.get("http://localhost:5199/getemployeeslist/");
+    const employees = Array.from(data.$values);
+    setEmployees(employees);
+    console.log(employees);
+  };
+
+  useEffect(() => {
+    fetchEmployees();
+  }, []);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <main>
-        <h1>User List</h1>
-        <ul>
-          {data &&
-            data.length > 0 &&
-            data.map((userObj, index) => (
-              <li key={userObj.id}>{userObj.name}</li>
-            ))}
-        </ul>
-      </main>
-    </QueryClientProvider>
+    <React.Fragment>
+      {renderNavbar()}
+      <div class="container mt-4">
+        <label>Employés</label>
+        <div class="row"></div>
+        <div class="col-sm-12">
+          <div className="Dashboard-panel rounded mt-3">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Nom</th>
+                  <th scope="col">Prénom</th>
+                  <th scope="col">Profil</th>
+                  <th scope="col">Manager</th>
+                  <th scope="col">Date Entrée</th>
+                  <th>Détails</th>
+                </tr>
+              </thead>
+              <tbody>
+                {employees.map((employee) => (
+                  <tr>
+                    <td>{employee.lastName}</td>
+                    <td>{employee.firstName}</td>
+                    <td>{employee.profile}</td>
+                    <td>{employee.manager}</td>
+                    <td>{employee.entryDate}</td>
+                    <td>
+                      <button onClick={handleEdit}>
+                        <FaEdit></FaEdit>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </React.Fragment>
   );
+}
+
+function handleEdit() {
+  alert("affichage details");
+}
+
+function renderNavbar() {
+  const authenticated = true;
+  if (authenticated) {
+    return <NavBar />;
+  }
+  return <div></div>;
 }
